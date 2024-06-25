@@ -1,44 +1,44 @@
 const Book = require("../models/bookModel");
 
-//@desc create Product
-//@route POST /api/v1/product
+//@desc create Book
+//@route POST /api/v1/book
 //@access Public
 exports.createBook = async (req, res) => {
   try {
-    const { productId, name, description, category, price } = req.body;
+    const { bookId, bookName, contactNumber, authour, issueDate, returnDate, inCharge } = req.body;
 
-    //Check already exists
-    const bookExists = await Product.findOne({ productId });
+    const bookExists = await Book.findOne({ bookId });
 
-    //if found
     if (bookExists) {
-      throw new Error("Book already exists");
+      throw new Error("Book is already exists");
     }
 
-    //Create product
+    //Create Book
     const newBook = await Book.create({
-      productId,
-      name,
-      description,
-      category,
-      price,
+        bookId, 
+        bookName, 
+        contactNumber, 
+        authour, 
+        issueDate, 
+        returnDate, 
+        inCharge
     });
 
     res.status(201).json({
       status: "success",
-      message:"Book details entered successfully",
+      message:"Book details entered successfully!!!!!!!!!",
       data: newBook,
     });
   } catch (err) {
     res.status(500).json({
-      status: "error",
+      status: "Book details not enterd successfully!!!!!!!",
       message: err.message,
     });
   }
 };
 
-//@desc Get all Products
-//@route GET /api/v1/product
+//@desc Get all Book
+//@route GET /api/v1/book
 //@access Public
 exports.getBook = async (req, res) => {
   try {
@@ -46,19 +46,19 @@ exports.getBook = async (req, res) => {
 
     res.status(201).json({
       status: "success",
-      message: "Book fetched successfully",
+      message: "Book details fetched successfully!!!!!",
       data: book,
     });
   } catch (error) {
     res.status(500).json({
-      status: "error",
+      status: "Book details fetched successfully!!!!!",
       message: err.message,
     });
   }
 };
 
-//@desc Get one Product by id
-//@route GET /api/v1/product/:id
+//@desc Get one Book by id
+//@route GET /api/v1/book/:id
 //@access Public
 exports.getBookById = async (req, res) => {
   try {
@@ -66,38 +66,40 @@ exports.getBookById = async (req, res) => {
 
     res.status(201).json({
       status: "success",
-      message: "Book fetched successfully",
+      message: "Specific Book details fetched successfully!!!!!!",
       data: book,
     });
   } catch (error) {
     res.status(500).json({
-      status: "error",
+      status: "Book details not fetched successfully!!!!!",
       message: error.message,
     });
   }
 };
 
-//@desc Update Product
-//@route PUT /api/v1/product/:id
+//@desc Update Book
+//@route PUT /api/v1/book/:id
 //@access Public
 exports.updateBook = async (req, res) => {
   try {
-    const { productId, name, description, category, price } = req.body;
+    const { bookId, bookName, contactNumber, authour, issueDate, returnDate, inCharge  } = req.body;
 
     //check already exists
-    const productExist = await Product.findOne({ productId });
-    if (productExist) {
-      throw new Error("Product already exist");
+    const bookExist = await Book.findOne({ bookId });
+    if (bookExist) {
+      throw new Error("Book already exist");
     }
 
-    const updatedProduct = await Product.findByIdAndUpdate(
+    const updatedBook = await Book.findByIdAndUpdate(
       req.params.id,
       {
-        productId,
-        name,
-        description,
-        category,
-        price,
+        bookId,
+        bookName, 
+        contactNumber, 
+        authour, 
+        issueDate,
+        returnDate, 
+        inCharge 
       },
       {
         new: true,
@@ -105,30 +107,30 @@ exports.updateBook = async (req, res) => {
     );
     res.status(201).json({
       status: "success",
-      message: "Product updated successfully",
-      data: updatedProduct,
+      message: "Book details updated successfully!!!!!!",
+      data: updatedBook,
     });
   } catch (error) {
     res.status(500).json({
-      status: "error",
+      status: "Book details not updated successfully!!!!1",
       message: error.message,
     });
   }
 };
 
-//@desc Delete Product
-//@route DELETE /api/v1/product/:id
+//@desc Delete Book
+//@route DELETE /api/v1/book/:id
 //@access Public
 exports.deleteBook = async (req, res) => {
   try {
     await Book.findByIdAndDelete(req.params.id);
     res.status(201).json({
       status: "success",
-      message: "Book deleted successfully",
+      message: "Book details deleted successfully!!!!!",
     });
   } catch (error) {
     res.status(500).json({
-      status: "error",
+      status: "Book details not deleted successfully!!!!!",
       message: err.message,
     });
   }
