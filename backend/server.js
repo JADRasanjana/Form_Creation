@@ -1,6 +1,6 @@
 import express from "express"
 import bookRouter from './src/routes/bookRoutes.js';
-//import { notFound, errorHandler } from './src/middlewares/bookMiddlewares.js';
+import { notFound, errorHandler } from './src/middlewares/bookMiddlewares.js';
 import connectDB from "./src/dbConnect/connectDB.js";
 import { config } from 'dotenv';
 import mongoose from "mongoose";
@@ -16,10 +16,10 @@ app.use(express.json());
 app.use('/api/v1/books', bookRouter);
 
 // 404 Not Found middleware
-//app.use(notFound);
+app.use(notFound);
 
 // Global error handler
-//app.use(errorHandler);
+app.use(errorHandler);
 
 const connection = mongoose.connection;
 connection.once("open",() => {
