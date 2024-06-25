@@ -1,12 +1,12 @@
-const express = require("express");
-const bookRouter = require("../src/routes/bookRoutes");
-const app = express();
+// import express, { json } from "express";
+// import bookRouter from "../src/routes/bookRoutes";
+// const app = express();
 
 
-//middleware
-app.use(express.json());
+// //middleware
+// app.use(json());
 
-//routes
-app.use("/api/v1/book", bookRouter);
+// //routes
+// app.use("/api/v1/book", bookRouter);
 
-module.exports = app;
+// export default app;

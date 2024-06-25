@@ -1,9 +1,10 @@
-const Book = require("../models/bookModel");
+import Book from '../models/bookModel.js';
 
 //@desc create Book
 //@route POST /api/v1/book
 //@access Public
-exports.createBook = async (req, res) => {
+
+export const createBook = async (req, res) => {
   try {
     const { bookId, bookName, contactNumber, authour, issueDate, returnDate, inCharge, studentName } = req.body;
 
@@ -41,7 +42,7 @@ exports.createBook = async (req, res) => {
 //@desc Get all Book
 //@route GET /api/v1/book
 //@access Public
-exports.getBook = async (req, res) => {
+export const getBook = async (req, res) => {
   try {
     const book = await Book.find();
 
@@ -61,7 +62,7 @@ exports.getBook = async (req, res) => {
 //@desc Get one Book by id
 //@route GET /api/v1/book/:id
 //@access Public
-exports.getBookById = async (req, res) => {
+export const getBookById = async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
 
@@ -81,7 +82,7 @@ exports.getBookById = async (req, res) => {
 //@desc Update Book
 //@route PUT /api/v1/book/:id
 //@access Public
-exports.updateBook = async (req, res) => {
+export const updateBook = async (req, res) => {
   try {
     const { bookId, bookName, contactNumber, authour, issueDate, returnDate, inCharge, studentName } = req.body;
 
@@ -123,7 +124,7 @@ exports.updateBook = async (req, res) => {
 //@desc Delete Book
 //@route DELETE /api/v1/book/:id
 //@access Public
-exports.deleteBook = async (req, res) => {
+export const deleteBook = async (req, res) => {
   try {
     await Book.findByIdAndDelete(req.params.id);
     res.status(201).json({
