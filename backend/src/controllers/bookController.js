@@ -5,7 +5,7 @@ const Book = require("../models/bookModel");
 //@access Public
 exports.createBook = async (req, res) => {
   try {
-    const { bookId, bookName, contactNumber, authour, issueDate, returnDate, inCharge } = req.body;
+    const { bookId, bookName, contactNumber, authour, issueDate, returnDate, inCharge, studentName } = req.body;
 
     const bookExists = await Book.findOne({ bookId });
 
@@ -21,7 +21,8 @@ exports.createBook = async (req, res) => {
         authour, 
         issueDate, 
         returnDate, 
-        inCharge
+        inCharge,
+        studentName
     });
 
     res.status(201).json({
@@ -82,7 +83,7 @@ exports.getBookById = async (req, res) => {
 //@access Public
 exports.updateBook = async (req, res) => {
   try {
-    const { bookId, bookName, contactNumber, authour, issueDate, returnDate, inCharge  } = req.body;
+    const { bookId, bookName, contactNumber, authour, issueDate, returnDate, inCharge, studentName } = req.body;
 
     //check already exists
     const bookExist = await Book.findOne({ bookId });
@@ -99,7 +100,8 @@ exports.updateBook = async (req, res) => {
         authour, 
         issueDate,
         returnDate, 
-        inCharge 
+        inCharge,
+        studentName
       },
       {
         new: true,

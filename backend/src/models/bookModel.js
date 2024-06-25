@@ -10,6 +10,10 @@ const bookSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    studentName: {
+      type: String,
+      required: true,
+    },
     contactNumber: {
         type: Number,
         required: true,

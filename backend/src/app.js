@@ -7,6 +7,6 @@ const app = express();
 app.use(express.json());
 
 //routes
-app.use("/api/v1/books", bookRouter);
+app.use("/api/v1/book", bookRouter);
 
 module.exports = app;
