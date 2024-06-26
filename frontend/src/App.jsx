@@ -13,33 +13,33 @@ const App = () => {
   }, []);
 
   const fetchBooks = async () => {
-    const response = await getBooks();
+    const response = await AddBook();
     setBooks(response.data.data);
   };
 
   const handleRegister = async (bookData) => {
-    await registerBook(bookData);
+    await AddBook(bookData);
     fetchBooks();
   };
 
   const handleUpdate = async (bookData) => {
-    await updateBook(selectedBook._id, bookData);
+    await UpdateBook(selectedBook._id, bookData);
     fetchBooks();
     setSelectedBook(null);
   };
 
   const handleDelete = async (id) => {
-    await deleteBook(id);
+    await RemoveBook(id);
     fetchBooks();
   };
 
   const handleEdit = async (id) => {
-    const response = await getBook(id);
+    const response = await AllBooks(id);
     setSelectedBook(response.data.data);
   };
 
   const handleViewProfile = async (id) => {
-    const response = await getBook(id);
+    const response = await UniqueBook(id);
     setSelectedBook(response.data.data);
     setProfileDialogOpen(true);
   };
